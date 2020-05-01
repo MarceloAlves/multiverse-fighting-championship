@@ -9,7 +9,6 @@ import Winner from './scenes/Winner'
 
 function App() {
   const [state, send] = useMachine(mainMachine)
-  console.log(state)
 
   const winners = state.context.winners.concat(Array(10 - state.context.winners.length).fill(null))
 

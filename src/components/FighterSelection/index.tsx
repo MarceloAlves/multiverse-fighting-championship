@@ -4,7 +4,7 @@ import { useCharacter } from '../../services/useCharacter'
 import { Character } from '../../types'
 import unknownImage from '../../media/unknown.jpeg'
 
-const FighterSelection: React.FC<any> = ({ fighterId, send }) => {
+const FighterSelection: React.FC<{ fighterId: number; send: any }> = ({ fighterId, send }) => {
   const { data = {} as Character, status } = useCharacter(fighterId)
 
   return (
