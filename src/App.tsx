@@ -10,14 +10,12 @@ import Winner from './scenes/Winner'
 function App() {
   const [state, send] = useMachine(mainMachine)
 
-  const winners = state.context.winners.concat(Array(10 - state.context.winners.length).fill(null))
-
   return (
     <Flex justifyContent='center' alignItems='center' direction='column' pt={{ base: 10, sm: 5 }} px={{ base: 10, xs: 5 }}>
       {state.matches('idle') && <Idle onClick={() => send('START')} />}
       {state.matches('running') && <Matchup fighters={state.context.fighters ?? []} send={send} />}
-      {state.matches('running') && <Results winners={winners} />}
-      {state.matches('results') && <Winner id={winners[winners.length - 1]} restartGame={() => send('RESTART')} />}
+      {state.matches('running') && <Results winners={state.context.winners} />}
+      {state.matches('results') && <Winner id={state.context.winner!} restartGame={() => send('RESTART')} />}
     </Flex>
   )
 }

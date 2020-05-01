@@ -22,6 +22,7 @@
     "react-query": "^1.2.9",
     "react-query-devtools": "^1.1.5",
     "react-scripts": "3.4.1",
+    "react-spring": "^8.0.27",
     "typescript": "~3.7.2",
     "xstate": "^4.9.1"
   },

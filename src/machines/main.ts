@@ -5,13 +5,14 @@ const randomNumber = (min: number, max: number) => {
 }
 
 /** Viz: https://xstate.js.org/viz/?gist=d28649f1f2d193546411816176307287 */
-export const mainMachine = Machine<{ winners: number[]; fighters: number[] }>(
+export const mainMachine = Machine<{ winners: { id: number; round: number }[]; fighters: number[]; winner: number | null }>(
   {
     id: 'main',
     initial: 'idle',
     context: {
       winners: [],
       fighters: [],
+      winner: null,
     },
     states: {
       idle: {
@@ -28,6 +29,7 @@ export const mainMachine = Machine<{ winners: number[]; fighters: number[] }>(
             on: {
               '': {
                 cond: (ctx) => ctx.winners.length === 10,
+                actions: 'declareWinner',
                 target: '#main.results',
               },
               PICK_WINNER: {
@@ -50,7 +52,7 @@ export const mainMachine = Machine<{ winners: number[]; fighters: number[] }>(
   {
     actions: {
       addWinner: assign({
-        winners: (ctx, evt) => ctx.winners.concat(evt.selection),
+        winners: (ctx, evt) => ctx.winners.concat({ id: evt.selection, round: ctx.winners.length + 1 }),
       }),
       setInitialFighters: assign({
         winners: (_ctx) => [],
@@ -58,6 +60,9 @@ export const mainMachine = Machine<{ winners: number[]; fighters: number[] }>(
       }),
       nextFighters: assign({
         fighters: (_ctx, evt) => [evt.selection, randomNumber(1, 493)],
+      }),
+      declareWinner: assign({
+        winner: (ctx, _evt) => ctx.winners[ctx.winners.length - 1].id,
       }),
     },
   }
