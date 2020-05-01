@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { ReactQueryDevtools } from 'react-query-devtools'
+import { ThemeProvider, CSSReset } from '@chakra-ui/core'
+import { ReactQueryConfigProvider, ReactQueryProviderConfig } from 'react-query'
+
+const config: ReactQueryProviderConfig = {
+  cacheTime: Infinity,
+  staleTime: Infinity,
+  refetchOnWindowFocus: false,
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <ReactQueryDevtools />
-    <App />
+    <ReactQueryConfigProvider config={config}>
+      <ThemeProvider>
+        <CSSReset />
+        <App />
+      </ThemeProvider>
+    </ReactQueryConfigProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
