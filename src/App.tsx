@@ -6,17 +6,20 @@ import Idle from './scenes/Idle'
 import { Flex } from '@chakra-ui/core'
 import Results from './components/Results'
 import Winner from './scenes/Winner'
+import { MachineProvider } from './machines/machine-context'
 
 function App() {
   const [state, send] = useMachine(mainMachine)
 
   return (
-    <Flex justifyContent='center' alignItems='center' direction='column' pt={{ base: 10, sm: 5 }} px={{ base: 10, xs: 5 }}>
-      {state.matches('idle') && <Idle onClick={() => send('START')} />}
-      {state.matches('running') && <Matchup fighters={state.context.fighters ?? []} send={send} />}
-      {state.matches('running') && <Results winners={state.context.winners} />}
-      {state.matches('results') && <Winner id={state.context.winner!} restartGame={() => send('RESTART')} />}
-    </Flex>
+    <MachineProvider value={state.context} send={send}>
+      <Flex justifyContent='center' alignItems='center' direction='column' pt={{ base: 10, sm: 5 }} px={{ base: 10, xs: 5 }}>
+        {state.matches('idle') && <Idle />}
+        {state.matches('running') && <Matchup />}
+        {state.matches('running') && <Results />}
+        {state.matches('results') && <Winner />}
+      </Flex>
+    </MachineProvider>
   )
 }
 

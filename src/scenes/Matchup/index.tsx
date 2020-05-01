@@ -2,9 +2,12 @@ import React from 'react'
 import { Box, SimpleGrid, Image, Flex } from '@chakra-ui/core'
 import FighterSelection from '../../components/FighterSelection'
 import vsImage from '../../media/vs.png'
+import { useMachineContext, useMachineSend } from '../../machines/machine-context'
 
-const Matchup: React.FC<{ fighters: number[]; send: any }> = ({ fighters, send }) => {
-  const [fighterA, fighterB] = fighters
+const Matchup: React.FC = () => {
+  const machineState = useMachineContext()
+  const [fighterA, fighterB] = machineState.fighters
+  const send = useMachineSend()
 
   return (
     <SimpleGrid columns={3}>

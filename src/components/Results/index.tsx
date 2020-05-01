@@ -1,10 +1,12 @@
 import React from 'react'
-import { Flex, Grid } from '@chakra-ui/core'
+import { Grid } from '@chakra-ui/core'
 import RoundResult from '../RoundResult'
 import { useTransition } from 'react-spring'
+import { useMachineContext } from '../../machines/machine-context'
 
-const Results: React.FC<{ winners: { id: number; round: number }[] }> = ({ winners }) => {
-  const transitions = useTransition(winners, (item) => item.id * item.round, {
+const Results: React.FC = () => {
+  const machineContext = useMachineContext()
+  const transitions = useTransition(machineContext.winners, (item) => item.id * item.round, {
     from: { transform: 'translate(1000%)' },
     enter: { transform: 'translate(0)' },
     leave: { transform: 'translate(0,-40px,0)' },
