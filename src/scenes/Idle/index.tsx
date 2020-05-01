@@ -6,7 +6,7 @@ const Idle: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
     <Flex flexDirection='column' maxWidth='sm'>
       <Image src={logo} alt='Multiverse Fighting Championship' />
-      <Button variantColor='green' size='lg' onClick={onClick} mt='10px'>
+      <Button size='lg' variantColor='cyan' onClick={onClick} mt='10px'>
         Start Game
       </Button>
     </Flex>

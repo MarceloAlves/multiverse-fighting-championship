@@ -12,7 +12,7 @@ const Winner: React.FC<{ id: number; restartGame: () => void }> = ({ id, restart
     <Flex flexDirection='column' maxWidth='sm'>
       <Image src={winner} alt='Winner!' />
       <Image src={status === 'success' ? data.image : unknownImage} />
-      <Button onClick={restartGame} variantColor='blue' mt='10px'>
+      <Button variantColor='cyan' onClick={restartGame} mt='10px'>
         Play Again?
       </Button>
     </Flex>

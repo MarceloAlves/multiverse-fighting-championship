@@ -1,7 +1,7 @@
 import React from 'react'
 import { useMachine } from '@xstate/react'
 import { mainMachine } from './machines/main'
-import Matchup from './components/Matchup'
+import Matchup from './scenes/Matchup'
 import Idle from './scenes/Idle'
 import { Flex } from '@chakra-ui/core'
 import Results from './components/Results'
@@ -14,7 +14,7 @@ function App() {
   const winners = state.context.winners.concat(Array(10 - state.context.winners.length).fill(null))
 
   return (
-    <Flex w='100vw' h='100vh' justifyContent='center' alignItems='center' direction='column'>
+    <Flex justifyContent='center' alignItems='center' direction='column' pt={{ base: 10, sm: 5 }} px={{ base: 10, xs: 5 }}>
       {state.matches('idle') && <Idle onClick={() => send('START')} />}
       {state.matches('running') && <Matchup fighters={state.context.fighters ?? []} send={send} />}
       {state.matches('running') && <Results winners={winners} />}

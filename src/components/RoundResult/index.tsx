@@ -8,7 +8,7 @@ const RoundResult: React.FC<{ fighterId: number; round: number }> = ({ fighterId
   const { data = {} as Character, status } = useCharacter(fighterId)
 
   return (
-    <Box border='1px solid grey' borderRadius='10px' overflow='hidden' maxWidth='100px' p={0} m={5}>
+    <Box border='1px solid grey' borderRadius='10px' overflow='hidden' maxWidth='150px' p={0} m={{ base: 5, xs: 2 }}>
       <Box width='100%'>
         <Box>
           <Text textAlign='center'>Round {round}</Text>

@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker'
 import { ReactQueryDevtools } from 'react-query-devtools'
 import { ThemeProvider, CSSReset } from '@chakra-ui/core'
 import { ReactQueryConfigProvider, ReactQueryProviderConfig } from 'react-query'
+import { theme } from './theme'
 
 const config: ReactQueryProviderConfig = {
   cacheTime: Infinity,
@@ -16,7 +17,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ReactQueryDevtools />
     <ReactQueryConfigProvider config={config}>
-      <ThemeProvider>
+      <ThemeProvider theme={theme}>
         <CSSReset />
         <App />
       </ThemeProvider>

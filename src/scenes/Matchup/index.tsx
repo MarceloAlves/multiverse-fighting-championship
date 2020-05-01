@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, SimpleGrid, Image, Flex } from '@chakra-ui/core'
-import FighterSelection from '../FighterSelection'
+import FighterSelection from '../../components/FighterSelection'
 import vsImage from '../../media/vs.png'
 
 const Matchup: React.FC<any> = ({ fighters, send }) => {

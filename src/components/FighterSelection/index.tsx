@@ -19,10 +19,10 @@ const FighterSelection: React.FC<any> = ({ fighterId, send }) => {
         <Box display='flex' justifyContent='center' alignItems='center'>
           <Button
             isLoading={status === 'loading'}
+            variantColor='cyan'
             loadingText='Loading'
             m='20px'
             size='lg'
-            variantColor='green'
             display='block'
             onClick={() => send('PICK_WINNER', { selection: fighterId })}
           >
